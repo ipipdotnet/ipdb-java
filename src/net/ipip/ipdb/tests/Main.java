@@ -12,7 +12,7 @@ public class Main {
 
             System.out.println(db.getBuildUTCTime());
             System.out.println(Arrays.toString(db.getSupportFields()));
-
+            System.out.println(db.getMeta().IPVersion);
 
             System.out.println(Arrays.toString(db.find("2001:250:200::", "CN")));
 

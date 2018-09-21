@@ -39,14 +39,12 @@ public class Reader {
         byte[] metaBytes = Arrays.copyOfRange(this.data, 4, Long.valueOf(metaLength).intValue() + 4);
 
         MetaData meta = JSONObject.parseObject(new String(metaBytes), MetaData.class);
+        this.nodeCount = meta.nodeCount;
+        this.meta = meta;
 
         if ((meta.totalSize + Long.valueOf(metaLength).intValue() + 4) != this.data.length) {
             throw new InvalidDatabaseException("database file size error");
         }
-
-        this.nodeCount = meta.nodeCount;
-
-        this.meta = meta;
 
         this.data = Arrays.copyOfRange(this.data, Long.valueOf(metaLength).intValue() + 4, this.fileSize);
 
