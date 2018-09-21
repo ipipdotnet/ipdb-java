@@ -90,7 +90,7 @@ public class Reader {
                 throw new IPFormatException("ipv4 format error");
             }
             if ((this.meta.IPVersion & 0x01) != 0x01){
-                throw new IPFormatException("no support ");
+                throw new IPFormatException("no support ipv4");
             }
         } else {
             throw new IPFormatException("ip format error");
