@@ -11,4 +11,5 @@ public class MetaData {
     public int nodeCount;
     public Map<String, Integer> Languages;
     public String[] Fields;
+    public int totalSize;
 }

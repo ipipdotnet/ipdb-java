@@ -21,7 +21,7 @@ public class Reader {
 
     private int v4offset;
 
-    public Reader(String name) throws IOException {
+    public Reader(String name) throws IOException, InvalidDatabaseException {
 
         File file = new File(name);
         this.fileSize = new Long(file.length()).intValue();
@@ -39,6 +39,10 @@ public class Reader {
         byte[] metaBytes = Arrays.copyOfRange(this.data, 4, Long.valueOf(metaLength).intValue() + 4);
 
         MetaData meta = JSONObject.parseObject(new String(metaBytes), MetaData.class);
+
+        if ((meta.totalSize + Long.valueOf(metaLength).intValue() + 4) != this.data.length) {
+            throw new InvalidDatabaseException("database file size error");
+        }
 
         this.nodeCount = meta.nodeCount;
 
@@ -86,7 +90,7 @@ public class Reader {
                 throw new IPFormatException("ipv4 format error");
             }
             if ((this.meta.IPVersion & 0x01) != 0x01){
-                throw new IPFormatException("no support ipv4");
+                throw new IPFormatException("no support ");
             }
         } else {
             throw new IPFormatException("ip format error");
@@ -167,6 +171,10 @@ public class Reader {
             l |= 0x080000000L;
         }
         return l;
+    }
+
+    public MetaData getMeta() {
+        return this.meta;
     }
 
     public int getBuildUTCTime() {
