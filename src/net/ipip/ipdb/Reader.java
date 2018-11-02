@@ -94,13 +94,19 @@ public class Reader {
             throw new IPFormatException("ip format error");
         }
 
-        final int node = this.findNode(ipv);
+        int node = 0;
+        try {
+            node = this.findNode(ipv);
+        } catch (NotFoundException nfe) {
+            return null;
+        }
+
         final String data = this.resolve(node);
 
         return Arrays.copyOfRange(data.split("\t", this.meta.Fields.length * this.meta.Languages.size()), off, off+this.meta.Fields.length);
     }
 
-    private int findNode(byte[] binary) throws InvalidDatabaseException {
+    private int findNode(byte[] binary) throws NotFoundException {
 
         int node = 0;
 
@@ -124,7 +130,7 @@ public class Reader {
             return node;
         }
 
-        throw new InvalidDatabaseException("xx");
+        throw new NotFoundException("ip not found");
     }
 
     private String resolve(int node) throws InvalidDatabaseException {
