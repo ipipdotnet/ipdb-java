@@ -39,4 +39,34 @@ public class DistrictInfo {
     public String getLongitude() {
         return this.data[7];
     }
+
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("country_name:");
+        sb.append(this.getCountryName());
+        sb.append("\n");
+        sb.append("region_name:");
+        sb.append(this.getRegionName());
+        sb.append("\n");
+        sb.append("city_name:");
+        sb.append(this.getCityName());
+        sb.append("\n");
+        sb.append("district_name:");
+        sb.append(this.getDistrictName());
+        sb.append("\n");
+        sb.append("china_admin_code:");
+        sb.append(this.getChinaAdminCode());
+        sb.append("\n");
+        sb.append("covering_radius:");
+        sb.append(this.getCoveringRadius());
+        sb.append("\n");
+        sb.append("latitude:");
+        sb.append(this.getLatitude());
+        sb.append("\n");
+        sb.append("longitude:");
+        sb.append(this.getLongitude());
+
+        return sb.toString();
+    }
 }
