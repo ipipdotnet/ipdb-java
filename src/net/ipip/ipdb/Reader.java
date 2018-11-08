@@ -151,7 +151,7 @@ public class Reader {
             throw new InvalidDatabaseException("database resolve error");
         }
 
-        return new String(this.data, resoloved + 2, size);
+        return new String(this.data, resoloved + 2, size, "UTF-8");
     }
 
     private int readNode(int node, int index) {
