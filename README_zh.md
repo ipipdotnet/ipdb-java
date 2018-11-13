@@ -23,6 +23,30 @@
         }
 </pre>
 
+### 地级市精度库数据字段说明
+<pre>
+country_name : 国家名字
+region_name  : 省名字
+city_name    : 城市名字
+owner_domain : 所有者
+isp_domain  : 运营商
+latitude  :  纬度
+longitude : 经度
+timezone : 时区
+utc_offset : UTC时区
+china_admin_code : 中国行政区划代码
+idd_code : 国家电话号码前缀
+country_code : 国家2位代码
+continent_code : 大洲代码
+idc : IDC |  VPN
+base_station : 基站 | WIFI
+country_code3 : 国家3位代码
+european_union : 是否为欧盟成员国： 1 | 0
+currency_code : 当前国家货币代码
+currency_name : 当前国家货币名称
+anycast : ANYCAST
+</pre>
+
 ## 中国地区区县级数据库
 <pre>
        try {
