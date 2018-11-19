@@ -12,7 +12,7 @@ public class CityInfo {
     }
 
     private String get(int index) {
-        return this.size > index ? this.data[index-1] : "";
+        return this.size >= index ? this.data[index-1] : "";
     }
 
     public String getCountryName() {
