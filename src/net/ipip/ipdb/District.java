@@ -15,6 +15,17 @@ public class District {
         this.reader = new Reader(name);
     }
 
+    public boolean reload(String name) {
+        try {
+            Reader r = new Reader(name);
+            this.reader = r;
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return true;
+    }
+
     public String[] find(String addr, String language) throws IPFormatException, InvalidDatabaseException {
         return this.reader.find(addr, language);
     }
