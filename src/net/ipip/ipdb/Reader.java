@@ -151,7 +151,11 @@ public class Reader {
             throw new InvalidDatabaseException("database resolve error");
         }
 
-        return new String(this.data, resoloved + 2, size, "UTF-8");
+        try {
+            return new String(this.data, resoloved + 2, size, "UTF-8");   
+        } catch (UnsupportedEncodingException e) {
+            throw new InvalidDatabaseException("database resolve error");
+        }
     }
 
     private int readNode(int node, int index) {
