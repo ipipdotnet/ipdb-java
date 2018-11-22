@@ -1,6 +1,7 @@
 package net.ipip.ipdb;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,10 @@ public class BaseStation {
 
     public BaseStation(String name) throws IOException,InvalidDatabaseException {
         this.reader = new Reader(name);
+    }
+
+    public BaseStation(InputStream in) throws IOException, InvalidDatabaseException {
+        this.reader = new Reader(in);
     }
 
     public boolean reload(String name) {

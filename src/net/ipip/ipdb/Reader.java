@@ -3,8 +3,7 @@ package net.ipip.ipdb;
 import com.alibaba.fastjson.JSONObject;
 import sun.net.util.IPAddressUtil;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,17 +22,34 @@ public class Reader {
 
     public Reader(String name) throws IOException, InvalidDatabaseException {
 
-        File file = new File(name);
-        this.fileSize = new Long(file.length()).intValue();
-
         Path path = Paths.get(name);
-        this.data = Files.readAllBytes(path);
+        this.init(Files.readAllBytes(path));
+    }
+
+    public Reader(InputStream in) throws IOException, InvalidDatabaseException {
+        this.init(this.readAllAsStream(in));
+    }
+
+    protected byte[] readAllAsStream(InputStream in) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int n;
+        while ((n = in.read(buffer)) != -1) {
+            out.write(buffer, 0, n);
+        }
+        return out.toByteArray();
+    }
+
+    protected void init(byte[] data) throws InvalidDatabaseException {
+
+        this.data = data;
+        this.fileSize = data.length;
 
         long metaLength = bytesToLong(
-            this.data[0],
-            this.data[1],
-            this.data[2],
-            this.data[3]
+                this.data[0],
+                this.data[1],
+                this.data[2],
+                this.data[3]
         );
 
         byte[] metaBytes = Arrays.copyOfRange(this.data, 4, Long.valueOf(metaLength).intValue() + 4);
@@ -48,18 +64,17 @@ public class Reader {
 
         this.data = Arrays.copyOfRange(this.data, Long.valueOf(metaLength).intValue() + 4, this.fileSize);
 
-        if (this.v4offset == 0) {
-            int node = 0;
-            for (int i = 0; i < 96 && node < this.nodeCount; i++) {
-                if (i >= 80) {
-                    node = this.readNode(node, 1);
-                } else {
-                    node = this.readNode(node, 0);
-                }
+        /** for ipv4 */
+        int node = 0;
+        for (int i = 0; i < 96 && node < this.nodeCount; i++) {
+            if (i >= 80) {
+                node = this.readNode(node, 1);
+            } else {
+                node = this.readNode(node, 0);
             }
-
-            this.v4offset = node;
         }
+
+        this.v4offset = node;
     }
 
     public String[] find(String addr, String language) throws IPFormatException, InvalidDatabaseException {
