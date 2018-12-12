@@ -139,9 +139,7 @@ public class Reader {
             node = this.readNode(node, 1 & ((0xFF & binary[i / 8]) >> 7 - (i % 8)));
         }
 
-        if (node == this.nodeCount) {
-            return 0;
-        } else if (node > this.nodeCount) {
+        if (node > this.nodeCount) {
             return node;
         }
 
