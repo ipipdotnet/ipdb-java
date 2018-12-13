@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.ipip</groupId>
+    <artifactId>ipdb</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <!--<classpathPrefix>lib/</classpathPrefix>-->
+                            <!--<mainClass>cn.mymaven.test.TestMain</mainClass>-->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+         <!--添加依赖的jar包-->
+         <dependencies>
+             <!--项目要使用到junit的jar包，所以在这里添加junit的jar包的依赖-->
+             <dependency>
+                 <groupId>junit</groupId>
+                 <artifactId>junit</artifactId>
+                 <version>4.9</version>
+                 <scope>test</scope>
+             </dependency>
+
+             <dependency>
+                 <groupId>com.alibaba</groupId>
+                 <artifactId>fastjson</artifactId>
+                 <version>1.2.47</version>
+             </dependency>
+         </dependencies>
+</project>
