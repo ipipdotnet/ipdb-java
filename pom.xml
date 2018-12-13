@@ -34,8 +34,6 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <useUniqueVersions>false</useUniqueVersions>
-                            <!--<classpathPrefix>lib/</classpathPrefix>-->
-                            <!--<mainClass>cn.mymaven.test.TestMain</mainClass>-->
                         </manifest>
                     </archive>
                 </configuration>
