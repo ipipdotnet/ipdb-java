@@ -8,6 +8,14 @@
     <artifactId>ipdb</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <developers>
+        <developer>
+            <id>frk</id>
+            <name>ipip.net</name>
+            <email>frk@ipip.net</email>
+        </developer>
+    </developers>
+
     <build>
         <plugins>
             <plugin>
