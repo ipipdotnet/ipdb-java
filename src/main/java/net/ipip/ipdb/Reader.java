@@ -32,6 +32,7 @@ public class Reader {
         while ((n = in.read(buffer)) != -1) {
             out.write(buffer, 0, n);
         }
+        in.close();
         return out.toByteArray();
     }
 
