@@ -14,6 +14,10 @@ Added to pom.xml
 &lt;/dependencies&gt;
 </pre>
 
+# Notice
+<pre>
+报错请检查 fastjson 版本是否太低
+</pre>
 # Documents
 * [中文文档](https://github.com/ipipdotnet/ipdb-java/blob/master/README_zh.md)
 * [English Docs](https://github.com/ipipdotnet/ipdb-java/blob/master/README_en.md)
