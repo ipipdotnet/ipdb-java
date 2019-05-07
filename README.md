@@ -16,7 +16,7 @@ Added to pom.xml
 
 # Notice
 <pre>
-报错请检查 fastjson 版本是否太低
+报错请检查 fastjson 版本是否太低，请使用最新版本
 </pre>
 # Documents
 * [中文文档](https://github.com/ipipdotnet/ipdb-java/blob/master/README_zh.md)
