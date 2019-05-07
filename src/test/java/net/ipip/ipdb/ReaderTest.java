@@ -15,8 +15,8 @@ public class ReaderTest {
             System.out.println(db.fields());
             System.out.println(db.isIPv4());
             System.out.println(db.isIPv6());
-            Thread.sleep(30 * 1000000L);
-        } catch (IOException | InterruptedException ioe) {
+//            Thread.sleep(30 * 1000000L);
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }

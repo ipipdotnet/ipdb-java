@@ -33,11 +33,11 @@ public class DistrictInfo {
     }
 
     public String getLatitude() {
-        return this.data[6];
+        return this.data[7];
     }
 
     public String getLongitude() {
-        return this.data[7];
+        return this.data[6];
     }
 
     public String toString() {
