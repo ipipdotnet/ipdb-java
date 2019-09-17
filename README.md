@@ -9,7 +9,7 @@ Added to pom.xml
     &lt;dependency>
         &lt;groupId>net.ipip&lt;/groupId&gt;
         &lt;artifactId>ipdb&lt;/artifactId&gt;
-        &lt;version>1.1.2&lt;/version&gt;
+        &lt;version>1.1.3&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </pre>
