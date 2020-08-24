@@ -119,7 +119,7 @@ public class Reader {
 
         return Arrays.copyOfRange(data.split("\t", this.meta.Fields.length * this.meta.Languages.size()), off, off+this.meta.Fields.length);
     }
-
+    
     private int findNode(byte[] binary) throws NotFoundException {
 
         int node = 0;

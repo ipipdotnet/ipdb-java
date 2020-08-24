@@ -60,6 +60,16 @@ public class City {
         return new CityInfo(data);
     }
 
+    public CityInfo findCity(String addr, String language) throws IPFormatException, InvalidDatabaseException {
+
+        Map<String,String> data = this.findMap(addr, language);
+        if (data == null) {
+            return null;
+        }
+
+        return new CityInfo(data);
+    }
+
     public int buildTime() {
         return this.reader.getBuildUTCTime();
     }
