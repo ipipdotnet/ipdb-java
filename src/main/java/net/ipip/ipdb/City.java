@@ -52,7 +52,7 @@ public class City {
 
     public CityInfo findInfo(String addr, String language) throws IPFormatException, InvalidDatabaseException {
 
-        String[] data = this.reader.find(addr, language);
+        Map<String,String> data = this.findMap(addr, language);
         if (data == null) {
             return null;
         }
