@@ -153,6 +153,14 @@ public class CityInfo {
         }
     }
 
+    public String getLine() {
+        if (this.M.size() > 0) {
+            return this.M.get("line");
+        } else {
+            return null;
+        }
+    }
+    
     public String getIDC() {
         if (this.M.size() > 0) {
             return this.M.get("idc");
