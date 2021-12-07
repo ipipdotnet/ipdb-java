@@ -53,6 +53,14 @@ public class CityInfo {
         }
     }
 
+    public String getDistrictName() {
+        if (this.M.size() > 0) {
+            return this.M.get("district_name");
+        } else {
+            return null;
+        }
+    }
+    
     public String getOwnerDomain() {
         if (this.M.size() > 0) {
             return this.M.get("owner_domain");
