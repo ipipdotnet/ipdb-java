@@ -23,11 +23,12 @@
         }
 </pre>
 
-### 地级市精度库数据字段说明
+### IPDB格式字段说明
 <pre>
 country_name : 国家名字 
 region_name  : 省名字   
 city_name    : 城市名字 
+district_name: 区县名称（仅中国） 
 owner_domain : 所有者  
 isp_domain  : 运营商 
 latitude  :  纬度 
@@ -46,6 +47,7 @@ european_union : 是否为欧盟成员国： 1 | 0
 currency_code : 当前国家货币代码   
 currency_name : 当前国家货币名称   
 anycast : ANYCAST      
+usage_type: 应用类型/应用场景
 </pre>
 
 ## 中国地区区县级数据库
