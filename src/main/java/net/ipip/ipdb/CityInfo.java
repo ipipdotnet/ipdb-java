@@ -247,6 +247,14 @@ public class CityInfo {
         }
     }
 
+    public String getUsageType() {
+        if (this.M.size() > 0) {
+            return this.M.get("usage_type");
+        } else {
+            return null;
+        }
+    }
+
     public DistrictInfo getDistrictInfo() {
         if (this.M.size() > 0) {
             String str = this.M.get("district_info");
