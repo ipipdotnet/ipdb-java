@@ -285,6 +285,9 @@ public class CityInfo {
             if (str == null) {
                 return null;
             }
+            if (!str.startsWith("[")) {
+                return null;
+            }
 
             return JSONObject.parseObject(str, AsnInfo[].class);
         }
