@@ -40,6 +40,9 @@ public class Reader {
 
         this.data = data;
         this.fileSize = data.length;
+        if (this.fileSize < 5) {
+            throw new InvalidDatabaseException("database file size error");
+        }
 
         long metaLength = bytesToLong(
                 this.data[0],
@@ -48,11 +51,16 @@ public class Reader {
                 this.data[3]
         );
 
-        byte[] metaBytes = Arrays.copyOfRange(this.data, 4, Long.valueOf(metaLength).intValue() + 4);
+        try {
+            int end = Long.valueOf(metaLength).intValue() + 4;
+            byte[] metaBytes = Arrays.copyOfRange(this.data, 4, end);
 
-        MetaData meta = JSONObject.parseObject(new String(metaBytes), MetaData.class);
-        this.nodeCount = meta.nodeCount;
-        this.meta = meta;
+            MetaData meta = JSONObject.parseObject(new String(metaBytes), MetaData.class);
+            this.nodeCount = meta.nodeCount;
+            this.meta = meta;
+        } catch (Exception e) {
+            throw new InvalidDatabaseException(e.getMessage());
+        }
 
         if ((meta.totalSize + Long.valueOf(metaLength).intValue() + 4) != this.data.length) {
             throw new InvalidDatabaseException("database file size error");

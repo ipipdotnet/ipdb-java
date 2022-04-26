@@ -10,13 +10,16 @@ public class DistrictTest {
     public void testDistrict() {
 
         try {
-            District db = new District("c:/tiantexin/download/china_district.ipdb");
+            District db = new District("d:/work/ipdb/china_district.ipdb");
             System.out.println(db.buildTime());
             System.out.println(db.languages());
             System.out.println(db.fields());
             System.out.println(db.isIPv4());
             System.out.println(db.isIPv6());
             DistrictInfo info = db.findInfo("123.121.1.69", "CN");
+            System.out.println(info.getRegionName());
+            System.out.println(info.getCityName());
+            System.out.println(info.getDistrictName());
             System.out.println(info.getLatitude());
             System.out.println(info.getLongitude());
         } catch (Exception ioe) {

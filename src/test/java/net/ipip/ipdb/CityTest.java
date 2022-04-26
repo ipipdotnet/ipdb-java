@@ -16,7 +16,7 @@ public class CityTest {
 
     static {
         try {
-            cityDb = new City("c:/work/ipdb/ipapi.ipdb");
+            cityDb = new City("d:/work/ipdb/ipdb_ipv4-0319.ipdb");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -31,15 +31,18 @@ public class CityTest {
             System.out.println(cityInfo.getRoute());
             System.out.println("\n");
             AsnInfo[] infos = cityInfo.getAsnInfos();
-            for (int i = 0; i < infos.length; i++) {
-                AsnInfo info = infos[i];
-                System.out.println(info.ASN);
-                System.out.println(info.Registry);
-                System.out.println(info.Country);
-                System.out.println(info.NetName);
-                System.out.println(info.OrgName);
+            if (infos != null) {
+                for (int i = 0; i < infos.length; i++) {
+                    AsnInfo info = infos[i];
+                    System.out.println(info.ASN);
+                    System.out.println(info.Registry);
+                    System.out.println(info.Country);
+                    System.out.println(info.NetName);
+                    System.out.println(info.OrgName);
+                }
+                System.out.println(infos.length);
             }
-            System.out.println(infos.length);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
