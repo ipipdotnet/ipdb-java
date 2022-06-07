@@ -16,7 +16,7 @@ public class CityTest {
 
     static {
         try {
-            cityDb = new City("d:/work/ipdb/ipv4_china_cn.ipdb");
+            cityDb = new City("c:/tiantexin/download/mydata4full.ipdb");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -25,7 +25,8 @@ public class CityTest {
     @Test
     public void findAsnInfo() {
         try {
-            CityInfo cityInfo = cityDb.findCity("8.8.8.8", "CN");
+            CityInfo cityInfo = cityDb.findCity("27.190.250.125", "CN");
+            System.out.println(cityInfo);
             System.out.println(cityInfo.getDistrictInfo());
             System.out.println("\n");
             System.out.println(cityInfo.getRoute());

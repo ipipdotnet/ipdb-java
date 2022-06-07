@@ -6,29 +6,15 @@ import java.util.Map;
 
 public class CityInfo {
 
-    private String[] data;
     private Map<String,String> M;
-
-    private int size;
-
-    public CityInfo(String[] data) {
-        this.data = data;
-        this.size = data.length;
-    }
 
     public CityInfo(Map<String,String> kv) {
         this.M = kv;
     }
 
-    private String get(int index) {
-        return this.size >= index ? this.data[index-1] : "";
-    }
-
     public String getCountryName() {
         if (this.M.size() > 0) {
             return this.M.get("country_name");
-        } else if (this.data.length > 0) {
-            return this.get(1);
         }
         return null;
     }
@@ -36,8 +22,6 @@ public class CityInfo {
     public String getRegionName() {
         if (this.M.size() > 0) {
             return this.M.get("region_name");
-        } else if (this.data.length > 1) {
-            return this.get(2);
         } else {
             return null;
         }
@@ -46,8 +30,6 @@ public class CityInfo {
     public String getCityName() {
         if (this.M.size() > 0) {
             return this.M.get("city_name");
-        } else if (this.data.length > 2) {
-            return this.get(3);
         } else {
             return null;
         }
@@ -64,8 +46,6 @@ public class CityInfo {
     public String getOwnerDomain() {
         if (this.M.size() > 0) {
             return this.M.get("owner_domain");
-        } else if (this.data.length > 3) {
-            return this.get(4);
         } else {
             return null;
         }
@@ -74,8 +54,6 @@ public class CityInfo {
     public String getIspDomain() {
         if (this.M.size() > 0) {
             return this.M.get("isp_domain");
-        } else if (this.data.length > 4) {
-            return this.get(5);
         } else {
             return null;
         }
@@ -84,8 +62,6 @@ public class CityInfo {
     public String getLatitude() {
         if (this.M.size() > 0) {
             return this.M.get("latitude");
-        } else if (this.data.length > 5) {
-            return this.get(6);
         } else {
             return null;
         }
@@ -94,8 +70,6 @@ public class CityInfo {
     public String getLongitude() {
         if (this.M.size() > 0) {
             return this.M.get("longitude");
-        } else if (this.data.length > 6) {
-            return this.get(7);
         } else {
             return null;
         }
@@ -104,8 +78,6 @@ public class CityInfo {
     public String getTimezone() {
         if (this.M.size() > 0) {
             return this.M.get("timezone");
-        } else if (this.data.length > 7) {
-            return this.get(8);
         } else {
             return null;
         }
@@ -114,8 +86,22 @@ public class CityInfo {
     public String getUtcOffset() {
         if (this.M.size() > 0) {
             return this.M.get("utc_offset");
-        } else if (this.data.length > 8) {
-            return this.get(9);
+        } else {
+            return null;
+        }
+    }
+
+    public String getChinaRegionCode() {
+        if (this.M.size() > 0) {
+            return this.M.get("china_region_code");
+        } else {
+            return null;
+        }
+    }
+
+    public String getChinaCityCode() {
+        if (this.M.size() > 0) {
+            return this.M.get("china_city_code");
         } else {
             return null;
         }
@@ -124,8 +110,6 @@ public class CityInfo {
     public String getChinaAdminCode() {
         if (this.M.size() > 0) {
             return this.M.get("china_admin_code");
-        } else if (this.data.length > 9) {
-            return this.get(10);
         } else {
             return null;
         }
@@ -134,8 +118,6 @@ public class CityInfo {
     public String getIddCode() {
         if (this.M.size() > 0) {
             return this.M.get("idd_code");
-        } else if (this.data.length > 10) {
-            return this.get(11);
         } else {
             return null;
         }
@@ -144,8 +126,6 @@ public class CityInfo {
     public String getCountryCode() {
         if (this.M.size() > 0) {
             return this.M.get("country_code");
-        } else if (this.data.length > 11) {
-            return this.get(12);
         } else {
             return null;
         }
@@ -154,8 +134,6 @@ public class CityInfo {
     public String getContinentCode() {
         if (this.M.size() > 0) {
             return this.M.get("continent_code");
-        } else if (this.data.length > 12) {
-            return this.get(13);
         } else {
             return null;
         }
@@ -172,8 +150,6 @@ public class CityInfo {
     public String getIDC() {
         if (this.M.size() > 0) {
             return this.M.get("idc");
-        } else if (this.data.length > 13) {
-            return this.get(14);
         } else {
             return null;
         }
@@ -182,8 +158,6 @@ public class CityInfo {
     public String getBaseStation() {
         if (this.M.size() > 0) {
             return this.M.get("base_station");
-        } else if (this.data.length > 14) {
-            return this.get(15);
         } else {
             return null;
         }
@@ -192,8 +166,6 @@ public class CityInfo {
     public String getCountryCode3() {
         if (this.M.size() > 0) {
             return this.M.get("country_code3");
-        } else if (this.data.length > 15) {
-            return this.get(16);
         } else {
             return null;
         }
@@ -202,8 +174,6 @@ public class CityInfo {
     public String getEuropeanUnion() {
         if (this.M.size() > 0) {
             return this.M.get("european_union");
-        } else if (this.data.length > 16) {
-            return this.get(17);
         } else {
             return null;
         }
@@ -212,8 +182,6 @@ public class CityInfo {
     public String getCurrencyCode() {
         if (this.M.size() > 0) {
             return this.M.get("currency_code");
-        } else if (this.data.length > 17) {
-            return this.get(18);
         } else {
             return null;
         }
@@ -222,8 +190,6 @@ public class CityInfo {
     public String getCurrencyName() {
         if (this.M.size() > 0) {
             return this.M.get("currency_name");
-        } else if (this.data.length > 18) {
-            return this.get(19);
         } else {
             return null;
         }
@@ -232,8 +198,6 @@ public class CityInfo {
     public String getAnycast() {
         if (this.M.size() > 0) {
             return this.M.get("anycast");
-        } else if (this.data.length > 19) {
-            return this.get(20);
         } else {
             return null;
         }
@@ -327,6 +291,14 @@ public class CityInfo {
 
         sb.append("utc_offset:");
         sb.append(this.getUtcOffset());
+        sb.append("\n");
+
+        sb.append("china_region_code:");
+        sb.append(this.getChinaRegionCode());
+        sb.append("\n");
+
+        sb.append("china_city_code:");
+        sb.append(this.getChinaCityCode());
         sb.append("\n");
 
         sb.append("china_admin_code:");
