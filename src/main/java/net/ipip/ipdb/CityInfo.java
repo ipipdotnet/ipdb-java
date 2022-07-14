@@ -211,6 +211,22 @@ public class CityInfo {
         }
     }
 
+    public String getASN() {
+        if (this.M.size() > 0) {
+            return this.M.get("asn");
+        } else {
+            return null;
+        }
+    }
+
+    public String getAreaCode() {
+        if (this.M.size() > 0) {
+            return this.M.get("area_code");
+        } else {
+            return null;
+        }
+    }
+
     public String getUsageType() {
         if (this.M.size() > 0) {
             return this.M.get("usage_type");
