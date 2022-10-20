@@ -107,6 +107,14 @@ public class CityInfo {
         }
     }
 
+    public String getChinaDistrictCode() {
+        if (this.M.size() > 0) {
+            return this.M.get("china_district_code");
+        } else {
+            return null;
+        }
+    }
+
     public String getChinaAdminCode() {
         if (this.M.size() > 0) {
             return this.M.get("china_admin_code");
