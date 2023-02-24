@@ -23,7 +23,7 @@
         }
 </pre>
 
-### IPDB格式字段说明
+### IPDB格式可支持的字段说明
 <pre>
 country_name : 国家名字 
 region_name  : 省名字   
