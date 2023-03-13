@@ -3,6 +3,7 @@ IPIP.net officially supported IP database ipdb format parsing library
 
 # Notice
 <pre>
+请直接用github上源码包
 报错请检查 fastjson 版本是否太低，请使用最新版本
 </pre>
 # Documents
