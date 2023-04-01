@@ -1,9 +1,10 @@
 package net.ipip.ipdb;
 
 import com.alibaba.fastjson.JSONObject;
-import sun.net.util.IPAddressUtil;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 
 
@@ -93,10 +94,14 @@ public class Reader {
             return null;
         }
 
-        byte[] ipv;
+        byte[] ipv = null;
 
         if (addr.indexOf(":") > 0) {
-            ipv = IPAddressUtil.textToNumericFormatV6(addr);
+            try {
+                ipv = InetAddress.getByName(addr).getAddress();
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
             if (ipv == null) {
                 throw new IPFormatException("ipv6 format error");
             }
@@ -105,7 +110,11 @@ public class Reader {
             }
 
         } else if (addr.indexOf(".") > 0) {
-            ipv = IPAddressUtil.textToNumericFormatV4(addr);
+            try {
+                ipv = InetAddress.getByName(addr).getAddress();
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
             if (ipv == null) {
                 throw new IPFormatException("ipv4 format error");
             }
