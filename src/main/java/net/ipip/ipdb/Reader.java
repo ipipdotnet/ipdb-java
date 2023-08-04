@@ -95,7 +95,7 @@ public class Reader {
 
         byte[] ipv;
 
-        if (addr.indexOf(":") > 0) {
+        if (addr.indexOf(":") >= 0) {
             ipv = IPAddressUtil.textToNumericFormatV6(addr);
             if (ipv == null) {
                 throw new IPFormatException("ipv6 format error");
