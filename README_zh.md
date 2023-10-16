@@ -8,7 +8,7 @@
 ## 地级市精度库
 <pre>
         try {
-            // City类可用于IPDB格式的IPv4免费库，IPv4与IPv6的每周高级版、每日标准版、每日高级版、每日专业版、每日旗舰版
+            // City类可用于IPDB格式的IPv4/IPv6定制版本
             City db = new City("/path/to/ipiptest.ipdb");
             
             // db.find(address, language) 返回索引数组
