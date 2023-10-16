@@ -28,7 +28,6 @@
 country_name : 国家名字 
 region_name  : 省名字   
 city_name    : 城市名字 
-district_name: 区县名称（仅中国,购买了区县级别） 
 owner_domain : 所有者域名  
 isp_domain  : 运营商域名   
 latitude  :  纬度 
@@ -48,6 +47,7 @@ currency_code : 当前国家货币代码
 currency_name : 当前国家货币名称   
 anycast : ANYCAST      
 usage_type: 应用类型/应用场景
+district_name: 区县名称（仅中国,购买了区县级别） 
 </pre>
 
 ## 中国地区区县级数据库
