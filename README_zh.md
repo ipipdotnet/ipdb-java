@@ -28,9 +28,9 @@
 country_name : 国家名字 
 region_name  : 省名字   
 city_name    : 城市名字 
-district_name: 区县名称（仅中国） 
-owner_domain : 所有者  
-isp_domain  : 运营商 
+district_name: 区县名称（仅中国,购买了区县级别） 
+owner_domain : 所有者域名  
+isp_domain  : 运营商域名   
 latitude  :  纬度 
 longitude : 经度    
 timezone : 时区  
