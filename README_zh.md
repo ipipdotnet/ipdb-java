@@ -1,7 +1,7 @@
 # ipdb-java
 用于解析 IPIP.net 提供的IPDB格式离线数据库
 
-# 免费的中国地级市精度库下载
+# IPv4中国地级市精度试用版
 [IPDB Database](https://www.ipip.net/product/client.html)
 
 # 代码示例
