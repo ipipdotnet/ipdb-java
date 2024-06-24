@@ -1,7 +1,6 @@
 package net.ipip.ipdb;
 
 import com.alibaba.fastjson.JSONObject;
-import sun.net.util.IPAddressUtil;
 
 import java.io.*;
 import java.util.Arrays;
