@@ -48,4 +48,6 @@ currency_name : 当前国家货币名称
 anycast : ANYCAST      
 usage_type: 应用类型/应用场景
 district_name: 区县名称（仅中国,购买了区县级别） 
+asn: ASNumber
+route: route prefix
 </pre>
