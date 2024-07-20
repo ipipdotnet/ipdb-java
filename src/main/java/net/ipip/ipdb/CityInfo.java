@@ -249,7 +249,8 @@ public class CityInfo {
             if (str == null) {
                 return null;
             }
-            Map<String,String> info = JSONObject.parseObject(str, Map.class);
+			@SuppressWarnings("unchecked")
+			Map<String,String> info = JSONObject.parseObject(str, Map.class);
 
             String[] data = new String[8];
             data[0] = this.getCountryName();

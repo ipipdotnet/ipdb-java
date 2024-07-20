@@ -1,32 +1,38 @@
 package net.ipip.ipdb;
 
-import com.alibaba.fastjson.JSONObject;
-import sun.net.util.IPAddressUtil;
-
 import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
+import com.alibaba.fastjson.JSONObject;
 
 public class Reader {
 
-    private int fileSize;
-    private int nodeCount;
+    protected int fileSize;
+    protected int nodeCount;
 
-    private MetaData meta;
-    private byte[] data;
+    protected MetaData meta;
+    protected byte[] data;
 
-    private int v4offset;
+    protected int v4offset;
+    
+    Reader() {
+    	
+    }
 
     public Reader(String name) throws IOException, InvalidDatabaseException {
-        this(new FileInputStream(new File(name)));
+    	File file = new File(name);
+    	this.init(this.readAllAsStream(new FileInputStream(file), (int) file.length()));
     }
 
     public Reader(InputStream in) throws IOException, InvalidDatabaseException {
-        this.init(this.readAllAsStream(in));
+        this.init(this.readAllAsStream(in, 32));
     }
 
-    protected byte[] readAllAsStream(InputStream in) throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+    protected byte[] readAllAsStream(InputStream in, int initalSize) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream(initalSize);
         byte[] buffer = new byte[4096];
         int n;
         while ((n = in.read(buffer)) != -1) {
@@ -62,7 +68,7 @@ public class Reader {
             throw new InvalidDatabaseException(e.getMessage());
         }
 
-        if ((meta.totalSize + Long.valueOf(metaLength).intValue() + 4) != this.data.length) {
+        if ((this.meta.totalSize + Long.valueOf(metaLength).intValue() + 4) != this.data.length) {
             throw new InvalidDatabaseException("database file size error");
         }
 
@@ -96,7 +102,7 @@ public class Reader {
         byte[] ipv;
 
         if (addr.indexOf(":") >= 0) {
-            ipv = IPAddressUtil.textToNumericFormatV6(addr);
+            ipv = textToNumericFormat(addr);
             if (ipv == null) {
                 throw new IPFormatException("ipv6 format error");
             }
@@ -105,7 +111,7 @@ public class Reader {
             }
 
         } else if (addr.indexOf(".") > 0) {
-            ipv = IPAddressUtil.textToNumericFormatV4(addr);
+            ipv = textToNumericFormat(addr);
             if (ipv == null) {
                 throw new IPFormatException("ipv4 format error");
             }
@@ -128,11 +134,19 @@ public class Reader {
         return Arrays.copyOfRange(data.split("\t", this.meta.Fields.length * this.meta.Languages.size()), off, off+this.meta.Fields.length);
     }
     
-    private int findNode(byte[] binary) throws NotFoundException {
+    byte[] textToNumericFormat(String addr) throws IPFormatException {
+		try {
+			return InetAddress.getByName(addr).getAddress();
+		} catch (UnknownHostException e) {
+			throw new IPFormatException(e);
+		}
+	}
+
+	int findNode(byte[] binary) throws NotFoundException {
 
         int node = 0;
 
-        final int bit = binary.length * 8;
+        final int bit = binary.length << 3;
 
         if (bit == 32) {
             node = this.v4offset;
@@ -143,7 +157,7 @@ public class Reader {
                 break;
             }
 
-            node = this.readNode(node, 1 & ((0xFF & binary[i / 8]) >> 7 - (i % 8)));
+            node = this.readNode(node, 1 & ((0xFF & binary[i >> 3]) >> 7 - (i & 7)));
         }
 
         if (node > this.nodeCount) {
@@ -153,7 +167,7 @@ public class Reader {
         throw new NotFoundException("ip not found");
     }
 
-    private String resolve(int node) throws InvalidDatabaseException {
+    String resolve(int node) throws InvalidDatabaseException {
         final int resoloved = node - this.nodeCount + this.nodeCount * 8;
         if (resoloved >= this.fileSize) {
             throw new InvalidDatabaseException("database resolve error");
@@ -167,18 +181,14 @@ public class Reader {
                 this.data[resoloved+1]
         )).intValue();
 
-        if (this.data.length < (resoloved + 2 + size)) {
+        if (this.fileSize < (resoloved + 2 + size)) {
             throw new InvalidDatabaseException("database resolve error");
         }
 
-        try {
-            return new String(this.data, resoloved + 2, size, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new InvalidDatabaseException("database resolve error");
-        }
+        return new String(this.data, resoloved + 2, size, StandardCharsets.UTF_8);
     }
 
-    private int readNode(int node, int index) {
+    int readNode(int node, int index) {
         int off = node * 8 + index * 4;
 
         return Long.valueOf(bytesToLong(
@@ -194,11 +204,7 @@ public class Reader {
     }
 
     private static long int2long(int i) {
-        long l = i & 0x7fffffffL;
-        if (i < 0) {
-            l |= 0x080000000L;
-        }
-        return l;
+        return i & 0xFFFFFFFFL;
     }
 
     public boolean isIPv4() {
