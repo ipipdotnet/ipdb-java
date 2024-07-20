@@ -1,6 +1,7 @@
 package net.ipip.ipdb;
 
 import java.io.InputStream;
+import java.io.Closeable;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class City {
     private Reader reader;
 
     public City(String name) throws IOException,InvalidDatabaseException {
-        this.reader = new Reader(name);
+        this.reader = new RandomAccessReader(name);
     }
 
     public City(InputStream in) throws IOException,InvalidDatabaseException {
@@ -23,8 +24,11 @@ public class City {
 
     public boolean reload(String name) {
         try {
-            Reader r = new Reader(name);
-            this.reader = r;
+        	Reader old = this.reader;
+            this.reader = new RandomAccessReader(name);
+            if (old instanceof Closeable) {
+        		((Closeable) old).close();
+        	}
         } catch (Exception e) {
             return false;
         }
