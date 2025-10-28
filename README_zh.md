@@ -5,7 +5,7 @@
 [IPDB Database](https://www.ipip.net/product/client.html)
 
 # 代码示例
-## 地级市精度库
+## 定制版数据库
 <pre>
         try {
             // City类可用于IPDB格式的IPv4/IPv6定制版本
