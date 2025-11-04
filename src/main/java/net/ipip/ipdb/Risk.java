@@ -1,5 +1,6 @@
 package net.ipip.ipdb;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -14,7 +15,7 @@ public class Risk {
     private Reader reader;
 
     public Risk(String name) throws IOException,InvalidDatabaseException {
-        this.reader = new Reader(name);
+        this.reader = new RandomAccessReader(name);
     }
 
     public Risk(InputStream in) throws IOException, InvalidDatabaseException {
@@ -23,8 +24,11 @@ public class Risk {
 
     public boolean reload(String name) {
         try {
-            Reader r = new Reader(name);
-            this.reader = r;
+        	Reader old = this.reader;
+            this.reader = new RandomAccessReader(name);
+            if (old instanceof Closeable) {
+        		((Closeable) old).close();
+        	}
         } catch (Exception e) {
             return false;
         }
